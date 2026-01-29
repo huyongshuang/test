@@ -1,0 +1,52 @@
+/* 全局基础设置（不再强制隐藏所有光标） */
+* {
+  caret-color: transparent !important; /* 隐藏输入框原生光标 */
+}
+
+/* 自定义 GIF 光标容器（修复偏移） */
+.gif-cursor {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  /* 精准定位：完全居中，无偏移 */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 999999 !important;
+  opacity: 1;
+  will-change: left, top;
+  transition: opacity 0.1s ease;
+}
+
+/* 普通状态光标 */
+.gif-cursor.normal {
+  background: url(/images/cursor-normal.gif) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+
+/* 链接/按钮悬停状态光标 */
+.gif-cursor.clickable {
+  background: url(/images/cursor-link.gif) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+
+/* 文本选择/输入框状态光标 */
+.gif-cursor.text {
+  background: url(/images/cursor-text.gif) no-repeat 0 0;
+  background-size: 100% 100%;
+}
+
+/* 禁用自定义光标时的隐藏 */
+.gif-cursor.disabled {
+  opacity: 0;
+}
+
+/* 移动端禁用 */
+@media (max-width: 768px) {
+  .gif-cursor {
+    display: none !important;
+  }
+  * {
+    cursor: auto !important;
+    caret-color: auto !important;
+  }
+}
